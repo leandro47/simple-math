@@ -1,11 +1,11 @@
 {
-    "name": "leandro/simple-math",
+    "name": "leandro47/simple-math",
     "description": "perform math calculations and format the results",
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Leandro\\SimpleMath\\": "src/"
+            "Leandro47\\SimpleMath\\": "src/"
         }
     },
     "authors": [

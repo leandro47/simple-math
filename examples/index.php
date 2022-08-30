@@ -1,5 +1,8 @@
 <?php
 
-$var = 'leandro';
+use Leandro47\SimpleMath\Value\Value;
 
-echo $var . PHP_EOL;
+require_once './vendor/autoload.php';
+
+$value = new Value(7);
+$v= 1;

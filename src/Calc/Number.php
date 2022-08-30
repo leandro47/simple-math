@@ -1,7 +1,8 @@
 <?php
 
-use Leandro\SimplesMath\Interfaces\MathInterface;
-use Leandro\SimplesMath\Interfaces\ValueInterface;
+use Leandro47\SimpleMath\Interfaces\MathInterface;
+use Leandro47\SimpleMath\Interfaces\ValueInterface;
+use Leandro47\SimpleMath\Value\Value;
 
 class Number implements MathInterface
 {
@@ -14,14 +15,14 @@ class Number implements MathInterface
 
     public function add(ValueInterface $value): MathInterface
     {
-        $this->value += $value->toFloat();
+        $this->value += $value->get();
     
         return $this;
     }
 
     public function subtraction(ValueInterface $value): MathInterface
     {
-        $this->value -= $value->toFloat();
+        $this->value -= $value->get();
     
         return $this;
     }
@@ -36,7 +37,7 @@ class Number implements MathInterface
         return $this;
     }
 
-    public function result(): ValueInterface
+    public function result(): Value
     {
         return new Value(4);
     }

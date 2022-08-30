@@ -1,6 +1,6 @@
 <?php
 
-namespace Leandro\SimplesMath\Interfaces;
+namespace Leandro47\SimplesMath\Interfaces;
 
 interface OperationInterface
 {

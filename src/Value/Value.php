@@ -1,19 +1,27 @@
 <?php
 
-use Leandro\SimplesMath\Interfaces\ValueInterface;
+namespace Leandro47\SimpleMath\Value;
+
+use Leandro47\SimpleMath\Interfaces\ValueInterface;
 
 class Value implements ValueInterface
 {
     private $value;
+    private $type;
 
     public function __construct($value)
     {
         $this->value = $value;
     }
 
-    public function with($value): self
+    public static function with($value): ValueInterface
     {
         return new self($value);
+    }
+
+    public function type(): ValueInterface
+    {
+        
     }
 
     public function set($value): void
@@ -24,10 +32,5 @@ class Value implements ValueInterface
     public function get()
     {
         return $this->value;
-    }
-
-    public function toFloat(): float
-    {
-        return (float) $this->value;
     }
 }

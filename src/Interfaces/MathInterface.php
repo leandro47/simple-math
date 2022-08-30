@@ -1,6 +1,8 @@
 <?php
 
-namespace Leandro\SimplesMath\Interfaces;
+namespace Leandro47\SimpleMath\Interfaces;
+
+use Leandro47\SimpleMath\Interfaces\ValueInterface;
 
 interface MathInterface
 {
