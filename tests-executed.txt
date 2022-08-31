@@ -1,3 +1,11 @@
 Number
- [x] Create with value
+ [x] Get value
+ [x] Create with float
+ [x] Create with string
+ [x] Create with int
+ [x] Set value
+ [x] Multiplication
+ [x] Subtraction
+ [x] Sum
+ [x] Divider
 

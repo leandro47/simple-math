@@ -9,4 +9,4 @@ $value2 = Number::with(20);
 
 $result = $value1->sum($value2);
 
-echo $result->value();
+echo $result->value(); // 30
