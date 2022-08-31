@@ -4,11 +4,11 @@ namespace Leandro47\SimpleMath\Interfaces;
 
 interface ValueInterface
 {
-    public static function with($value): ValueInterface;
+    public static function with(mixed $value): self;
 
-    public static function type(): ValueInterface;
+    public function set(mixed $value): void;
 
-    public function set($value): void;
+    public function get(): ValueInterface;
 
-    public function get();
+    public function value(): mixed;
 }
