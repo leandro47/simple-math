@@ -10,7 +10,7 @@ class Number implements NumberInterface
 
     public function __construct($value)
     {
-        $this->value = $value;
+        $this->set($value);
     }
 
     public static function with(mixed $value): NumberInterface
@@ -20,6 +20,17 @@ class Number implements NumberInterface
 
     public function set(mixed $value): void
     {
+        $value = trim($value);
+        $value = str_replace(',', '.', $value);
+
+        if ($value != 0 && empty($value)) {
+            throw new \InvalidArgumentException("Value not to be empty");
+        }
+
+        if (filter_var($value, FILTER_SANITIZE_NUMBER_FLOAT) === '') {
+            throw new \InvalidArgumentException("Value need to be a number type");
+        }
+
         $this->value = $value;
     }
 
@@ -56,6 +67,10 @@ class Number implements NumberInterface
 
     public function divider(NumberInterface $value): NumberInterface
     {
+        if ($this->value() == 0 || $value->value() == 0) {
+            throw new \InvalidArgumentException("Value not to be zero");
+        }
+
         $this->set($this->value() / $value->value());
 
         return $this;

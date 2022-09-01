@@ -1,11 +1,16 @@
 Number
- [x] Get value
- [x] Create with float
- [x] Create with string
  [x] Create with int
+ [x] Create with float
  [x] Set value
+ [x] Get value
  [x] Multiplication
  [x] Subtraction
- [x] Sum
+ [x] Sum zero
  [x] Divider
+ [x] Create with string
+ [x] Sum
+ [x] Create with word
+ [x] Divider by zero
+ [x] Create with text empty
+ [x] Create with null
 
