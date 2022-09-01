@@ -9,7 +9,7 @@ class NumberTest extends TestCase
     {
         $value = Number::with('10');
         static::assertInstanceOf(Number::class, $value);
-        static::assertEquals(11, $value->value());
+        static::assertEquals(10, $value->value());
     }
     
     public function testCreateWithInt()
