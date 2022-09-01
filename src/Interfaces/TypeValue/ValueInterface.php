@@ -1,6 +1,6 @@
 <?php
 
-namespace Leandro47\SimpleMath\Interfaces;
+namespace Leandro47\SimpleMath\Interfaces\TypeValue;
 
 interface ValueInterface
 {

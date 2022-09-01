@@ -1,6 +1,6 @@
 <?php
 
-namespace Leandro47\SimpleMath\TypeData;
+namespace Leandro47\SimpleMath\TypeValue;
 
 use Leandro47\SimpleMath\Interfaces\TypeValue\NumberInterface;
 
@@ -20,8 +20,10 @@ class Number implements NumberInterface
 
     public function set(mixed $value): void
     {
-        $value = trim($value);
-        $value = str_replace(',', '.', $value);
+        if (!is_null($value)) {
+            $value = trim($value);
+            $value = str_replace(',', '.', $value);
+        }
 
         if ($value != 0 && empty($value)) {
             throw new \InvalidArgumentException("Value not to be empty");
@@ -31,7 +33,7 @@ class Number implements NumberInterface
             throw new \InvalidArgumentException("Value need to be a number type");
         }
 
-        $this->value = $value;
+        $this->value = (float) $value;
     }
 
     public function get(): NumberInterface
@@ -46,23 +48,17 @@ class Number implements NumberInterface
 
     public function multiplication(NumberInterface $value): NumberInterface
     {
-        $this->set($this->value() * $value->value());
-
-        return $this;
+        return new self($this->value() * $value->value());
     }
 
     public function subtraction(NumberInterface $value): NumberInterface
     {
-        $this->set($this->value() - $value->value());
-
-        return $this;
+        return new self($this->value() - $value->value());
     }
 
     public function sum(NumberInterface $value): NumberInterface
     {
-        $this->set($this->value() + $value->value());
-
-        return $this;
+        return new self($this->value() + $value->value()) ;
     }
 
     public function divider(NumberInterface $value): NumberInterface
@@ -71,8 +67,6 @@ class Number implements NumberInterface
             throw new \InvalidArgumentException("Value not to be zero");
         }
 
-        $this->set($this->value() / $value->value());
-
-        return $this;
+        return new self($this->value() / $value->value());
     }
 }
