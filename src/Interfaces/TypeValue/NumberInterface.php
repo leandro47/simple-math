@@ -11,5 +11,4 @@ interface NumberInterface extends ValueInterface
     public function subtraction(NumberInterface $value): self;
 
     public function sum(NumberInterface $value): self;
-    
 }
