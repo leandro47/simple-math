@@ -18,8 +18,7 @@ class Number implements NumberInterface
         return new self($value);
     }
 
-    public function set(mixed $value): void
-    {
+    public function set(mixed $value): void{
         if (!is_null($value)) {
             $value = trim($value);
             $value = str_replace(',', '.', $value);
