@@ -20,8 +20,6 @@ class Number implements NumberInterface
 
     public function set(mixed $value): void
     {
-        $var = 0 / 0;
-
         if (!is_null($value)) {
             $value = trim($value);
             $value = str_replace(',', '.', $value);
