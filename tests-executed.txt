@@ -1,12 +1,12 @@
 Number
  [x] Create with float
  [x] Set value
- [x] Get value
  [x] Multiplication
  [x] Subtraction
  [x] Sum
  [x] Sum zero
  [x] Divider
+ [x] Format setting class
  [x] Create with int
  [x] Create with string
  [x] Fail create with text empty

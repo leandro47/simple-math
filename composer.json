@@ -21,6 +21,7 @@
     },
     "scripts": {
         "test": "phpunit",
+        "test-report": "phpunit --coverage-html reports/",
         "cs": "phpcs --standard=PSR12 src/",
         "phan": "phan --allow-polyfill-parser",
         "check": [

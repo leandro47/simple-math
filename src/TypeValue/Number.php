@@ -2,20 +2,24 @@
 
 namespace Leandro47\SimpleMath\TypeValue;
 
+use Leandro47\SimpleMath\Interfaces\Format\FormatInterface;
+use Leandro47\SimpleMath\Interfaces\Format\NumberFormatInterface;
 use Leandro47\SimpleMath\Interfaces\TypeValue\NumberInterface;
 
 class Number implements NumberInterface
 {
     private float $value;
+    private ?NumberFormatInterface $numberFormat;
 
-    public function __construct(mixed $value)
+    public function __construct(mixed $value, ?NumberFormatInterface $numberFormat = null)
     {
+        $this->numberFormat = $numberFormat;
         $this->set($value);
     }
 
-    public static function create(mixed $value): NumberInterface
+    public static function create(mixed $value, ?NumberFormatInterface $numberFormat = null): NumberInterface
     {
-        return new self($value);
+        return new self($value, $numberFormat);
     }
 
     public function set(mixed $value): void
@@ -36,14 +40,22 @@ class Number implements NumberInterface
         $this->value = (float) $value;
     }
 
-    public function get(): NumberInterface
-    {
-        return $this;
-    }
-
     public function value(): float
     {
         return (float) $this->value;
+    }
+
+    public function format(?FormatInterface $numberFormat = null): string
+    {
+        if (!is_null($numberFormat)) {
+            return $numberFormat->setValue($this->value())->show();
+        }
+
+        if (is_null($this->numberFormat)) {
+            throw new \InvalidArgumentException('NumberFormatInterface is not defined');
+        }
+
+        return $this->numberFormat->setValue($this->value())->show();
     }
 
     public function multiplication(NumberInterface $value): NumberInterface

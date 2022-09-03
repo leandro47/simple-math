@@ -2,7 +2,7 @@
 
 namespace Leandro47\SimpleMath\Interfaces\Format;
 
-interface NumberFormatInterface
+interface NumberFormatInterface extends FormatInterface
 {
-    public static function create(string $symbol, string $thousandSeparator, string $decimalSeparator): self;
+    public static function create(string $symbol, string $thousandSeparator, int $precision, string $decimalSeparator): self;
 }

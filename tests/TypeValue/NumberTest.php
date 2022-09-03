@@ -1,5 +1,6 @@
 <?php
 
+use Leandro47\SimpleMath\Format\NumberFormat;
 use Leandro47\SimpleMath\TypeValue\Number;
 use PHPUnit\Framework\TestCase;
 
@@ -32,13 +33,6 @@ class NumberTest extends TestCase
         $value->set(7);
         static::assertInstanceOf(Number::class, $value);
         static::assertEquals(7, $value->value());
-    }
-    
-    public function testGetValue()
-    {
-        $value = new Number(12);
-        $value2 = $value->get();
-        static::assertInstanceOf(Number::class, $value2);
     }
 
     public function testMultiplication()
@@ -138,5 +132,13 @@ class NumberTest extends TestCase
         $value1 = Number::create(0);
         $value2 = Number::create(0);
         $value1->divider($value2);
+    }
+
+    public function testFormatSettingClass()
+    {
+        $value1 = Number::create(2000.50);
+        $format = NumberFormat::create(',', '.', 2, 'R$');
+
+        static::assertEquals('R$ 2.000,50', $value1->format($format));
     }
 }
