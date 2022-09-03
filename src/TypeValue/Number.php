@@ -8,12 +8,12 @@ class Number implements NumberInterface
 {
     private float $value;
 
-    public function __construct($value)
+    public function __construct(mixed $value)
     {
         $this->set($value);
     }
 
-    public static function with(mixed $value): NumberInterface
+    public static function create(mixed $value): NumberInterface
     {
         return new self($value);
     }

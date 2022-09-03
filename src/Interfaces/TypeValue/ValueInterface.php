@@ -4,7 +4,7 @@ namespace Leandro47\SimpleMath\Interfaces\TypeValue;
 
 interface ValueInterface
 {
-    public static function with(mixed $value): self;
+    public static function create(mixed $value): self;
 
     public function set(mixed $value): void;
 
