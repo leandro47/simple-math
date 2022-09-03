@@ -136,7 +136,7 @@ class NumberTest extends TestCase
 
     public function testFormatSettingClass()
     {
-        $value1 = Number::create(2000.50);
+        $value1 = Number::create(2000);
         $format = NumberFormat::create(',', '.', 2, 'R$');
 
         static::assertEquals('R$ 2.000,50', $value1->format($format));

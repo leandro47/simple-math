@@ -15,10 +15,10 @@ class NumberFormat implements NumberFormatInterface
 
     public function __construct(string $decimalSeparator, string $thousandSeparator, int $precision = 2, string $symbol = '')
     {
-        $this->$symbol = $symbol;
-        $this->$thousandSeparator = $thousandSeparator;
-        $this->$decimalSeparator = $decimalSeparator;
-        $this->$precision = $precision;
+        $this->symbol = $symbol;
+        $this->thousandSeparator = $thousandSeparator;
+        $this->decimalSeparator = $decimalSeparator;
+        $this->precision = $precision;
     }
 
     public static function create(string $decimalSeparator, string $thousandSeparator, int $precision = 2, string $symbol = ''): self
@@ -35,13 +35,52 @@ class NumberFormat implements NumberFormatInterface
 
     public function show(): string
     {
-        $this->setDecinalSeparator();
+        $this->setDecimalSeparator();
+        $this->setThousandSeparator();
 
         return $this->value;
     }
 
-    private function setDecinalSeparator(): void
+    private function setThousandSeparator(): void
     {
-        $this->value = 'R$ 2.000,50';
+        $index = strripos($this->value, $this->decimalSeparator);
+        $index = $index ?? 0;
+        $value = explode($this->decimalSeparator, $this->value);
+        $chars = str_split($value[0]);
+        $chars = array_reverse($chars);
+
+        $qtdSeparator = 0;
+        $newChars = [];
+
+        foreach ($chars as $char) {
+            if ($qtdSeparator === 3) {
+                $newChars[] = $this->thousandSeparator;
+                $newChars[] = $char;
+                $qtdSeparator = 0;
+
+                continue;
+            }
+
+            $newChars[] = $char;
+            $qtdSeparator++;
+        }
+
+        $value[0] = implode('', array_reverse($newChars));
+
+        if (isset($value[1])) {
+            $value[1] = $this->setPrecision($value[1]);
+        }
+
+        $newValue = implode($this->decimalSeparator, $value);
+    }
+
+    private function setPrecision(string $decimal): void
+    {
+        
+    }
+
+    private function setDecimalSeparator(): void
+    {
+        $this->value = str_replace('.', $this->decimalSeparator, $this->value);
     }
 }
