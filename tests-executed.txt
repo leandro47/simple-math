@@ -1,16 +1,16 @@
 Number
  [x] Create with float
- [x] Set value
- [x] Multiplication
  [x] Subtraction
  [x] Sum
  [x] Sum zero
  [x] Divider
- [x] Create with int
- [x] Fail create with null
+ [x] Format setting class
+ [x] Multiplication
  [x] Create with string
+ [x] Create with int
+ [x] Set value
  [x] Fail create with text empty
+ [x] Fail create with null
  [x] Fail create with word
  [x] Fail divider by zero
- [ ] Format setting class
 

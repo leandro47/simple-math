@@ -57,12 +57,11 @@ class NumberFormat implements NumberFormatInterface
 
         $qtdSeparator = 0;
         $newChars = [];
-
         foreach ($chars as $char) {
             if ($qtdSeparator === 3) {
                 $newChars[] = $this->thousandSeparator;
                 $newChars[] = $char;
-                $qtdSeparator = 0;
+                $qtdSeparator = 1;
 
                 continue;
             }
@@ -78,7 +77,7 @@ class NumberFormat implements NumberFormatInterface
 
     private function setPrecision(): void
     {
-        $this->value = round($this->value, $this->precision);
+        $this->value = (string) round((float) $this->value, $this->precision);
         $value = explode('.', $this->value);
 
         $decimal = $value[1] ?? '';
@@ -86,7 +85,6 @@ class NumberFormat implements NumberFormatInterface
 
         $this->value = implode($this->decimalSeparator, $value);
     }
-
 
     private function setdecimal(string $value): string
     {

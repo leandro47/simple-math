@@ -141,12 +141,17 @@ class NumberTest extends TestCase
         $value3 = Number::create(10.558);
         $value4 = Number::create(8592759);
         $value5 = Number::create(4.5848);
+        $value6 = Number::create(31234567894.01);
+        $value7 = Number::create(0.5);
+
         $format = NumberFormat::create(',', '.', 2, 'R$');
 
         static::assertEquals('R$ 2.000,50', $value1->format($format));
         static::assertEquals('R$ 20.500,50', $value2->format($format));
         static::assertEquals('R$ 10,56', $value3->format($format));
         static::assertEquals('R$ 8.592.759,00', $value4->format($format));
-        static::assertEquals('R$ 4,59', $value5->format($format));
+        static::assertEquals('R$ 4,58', $value5->format($format));
+        static::assertEquals('R$ 31.234.567.894,01', $value6->format($format));
+        static::assertEquals('R$ 0,50', $value7->format($format));
     }
 }
