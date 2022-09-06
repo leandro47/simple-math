@@ -13,16 +13,24 @@ class NumberFormat implements NumberFormatInterface
     private int $precision;
     private string $value;
 
-    public function __construct(string $decimalSeparator, string $thousandSeparator, int $precision = 2, string $symbol = '')
-    {
+    public function __construct(
+        string $decimalSeparator,
+        string $thousandSeparator,
+        int $precision = 2,
+        string $symbol = ''
+    ) {
         $this->symbol = $symbol;
         $this->thousandSeparator = $thousandSeparator;
         $this->decimalSeparator = $decimalSeparator;
         $this->precision = $precision;
     }
 
-    public static function create(string $decimalSeparator, string $thousandSeparator, int $precision = 2, string $symbol = ''): self
-    {
+    public static function create(
+        string $decimalSeparator,
+        string $thousandSeparator,
+        int $precision = 2,
+        string $symbol = ''
+    ): self {
         return new self($decimalSeparator, $thousandSeparator, $precision, $symbol);
     }
 
@@ -35,7 +43,7 @@ class NumberFormat implements NumberFormatInterface
 
     public function show(): string
     {
-        $this->setDecimalSeparator();
+        $this->setPrecision();
         $this->setThousandSeparator();
 
         return $this->value;
@@ -43,8 +51,6 @@ class NumberFormat implements NumberFormatInterface
 
     private function setThousandSeparator(): void
     {
-        $index = strripos($this->value, $this->decimalSeparator);
-        $index = $index ?? 0;
         $value = explode($this->decimalSeparator, $this->value);
         $chars = str_split($value[0]);
         $chars = array_reverse($chars);
@@ -67,20 +73,29 @@ class NumberFormat implements NumberFormatInterface
 
         $value[0] = implode('', array_reverse($newChars));
 
-        if (isset($value[1])) {
-            $value[1] = $this->setPrecision($value[1]);
+        $this->value = $this->symbol . ' ' . implode($this->decimalSeparator, $value);
+    }
+
+    private function setPrecision(): void
+    {
+        $this->value = round($this->value, $this->precision);
+        $value = explode('.', $this->value);
+
+        $decimal = $value[1] ?? '';
+        $value[1] = $this->setdecimal($decimal);
+
+        $this->value = implode($this->decimalSeparator, $value);
+    }
+
+
+    private function setdecimal(string $value): string
+    {
+        $i = strlen($value);
+        while ($i < $this->precision) {
+            $value .= '0';
+            $i++;
         }
 
-        $newValue = implode($this->decimalSeparator, $value);
-    }
-
-    private function setPrecision(string $decimal): void
-    {
-        
-    }
-
-    private function setDecimalSeparator(): void
-    {
-        $this->value = str_replace('.', $this->decimalSeparator, $this->value);
+        return $value;
     }
 }
