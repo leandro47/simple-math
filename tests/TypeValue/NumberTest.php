@@ -1,5 +1,6 @@
 <?php
 
+use Leandro47\SimpleMath\Format\NumberFormat;
 use Leandro47\SimpleMath\TypeValue\Number;
 use PHPUnit\Framework\TestCase;
 
@@ -7,21 +8,21 @@ class NumberTest extends TestCase
 {
     public function testCreateWithString()
     {
-        $value = Number::with('10');
+        $value = Number::create('10');
         static::assertInstanceOf(Number::class, $value);
         static::assertEquals(10, $value->value());
     }
     
     public function testCreateWithInt()
     {
-        $value = Number::with(10);
+        $value = Number::create(10);
         static::assertInstanceOf(Number::class, $value);
         static::assertEquals(10, $value->value());
     }
     
     public function testCreateWithFloat()
     {
-        $value = Number::with(10.0);
+        $value = Number::create(10.0);
         static::assertInstanceOf(Number::class, $value);
         static::assertEquals(10, $value->value());
     }
@@ -33,18 +34,11 @@ class NumberTest extends TestCase
         static::assertInstanceOf(Number::class, $value);
         static::assertEquals(7, $value->value());
     }
-    
-    public function testGetValue()
-    {
-        $value = new Number(12);
-        $value2 = $value->get();
-        static::assertInstanceOf(Number::class, $value2);
-    }
 
     public function testMultiplication()
     {
-        $value1 = Number::with(2000.50);
-        $value2 = Number::with(2);
+        $value1 = Number::create(2000.50);
+        $value2 = Number::create(2);
         $result = $value1->multiplication($value2)->sum($value2);
 
         static::assertInstanceOf(Number::class, $value1);
@@ -57,8 +51,8 @@ class NumberTest extends TestCase
 
     public function testSubtraction()
     {
-        $value1 = Number::with(10);
-        $value2 = Number::with(2);
+        $value1 = Number::create(10);
+        $value2 = Number::create(2);
         $result = $value1->subtraction($value2);
 
         static::assertInstanceOf(Number::class, $value1);
@@ -71,10 +65,10 @@ class NumberTest extends TestCase
     
     public function testSum()
     {
-        $value1 = Number::with(10.5);
-        $value2 = Number::with(2.5);
-        $value3 = Number::with('7.5');
-        $value4 = Number::with('0,5');
+        $value1 = Number::create(10.5);
+        $value2 = Number::create(2.5);
+        $value3 = Number::create('7.5');
+        $value4 = Number::create('0,5');
         $result = $value1->sum($value2)->sum($value3)->subtraction($value4);
 
         static::assertInstanceOf(Number::class, $value1);
@@ -85,9 +79,9 @@ class NumberTest extends TestCase
 
     public function testSumZero()
     {
-        $value1 = Number::with('0,00');
-        $value2 = Number::with(28.001);
-        $result = $value1->sum($value2)->sum(Number::with('0.00'));
+        $value1 = Number::create('0,00');
+        $value2 = Number::create(28.001);
+        $result = $value1->sum($value2)->sum(Number::create('0.00'));
 
         static::assertInstanceOf(Number::class, $value1);
         static::assertEquals(0, $value1->value());
@@ -96,8 +90,8 @@ class NumberTest extends TestCase
 
     public function testDivider()
     {
-        $value1 = Number::with(10);
-        $value2 = Number::with(2);
+        $value1 = Number::create(10);
+        $value2 = Number::create(2);
         $result = $value1->divider($value2);
 
         static::assertInstanceOf(Number::class, $value1);
@@ -111,7 +105,7 @@ class NumberTest extends TestCase
         static::expectException(InvalidArgumentException::class);
         static::expectExceptionMessage("Value not to be empty");
 
-        Number::with('');
+        Number::create('');
     }
 
     public function testFailCreateWithNull()
@@ -119,7 +113,7 @@ class NumberTest extends TestCase
         static::expectException(InvalidArgumentException::class);
         static::expectExceptionMessage("Value need to be a number type");
 
-        Number::with(null);
+        Number::create(null);
     }
 
     public function testFailCreateWithWord()
@@ -127,7 +121,7 @@ class NumberTest extends TestCase
         static::expectException(InvalidArgumentException::class);
         static::expectExceptionMessage("Value need to be a number type");
 
-        Number::with('word');
+        Number::create('word');
     }
 
     public function testFailDividerByZero()
@@ -135,8 +129,29 @@ class NumberTest extends TestCase
         static::expectException(InvalidArgumentException::class);
         static::expectExceptionMessage("Value not to be zero");
 
-        $value1 = Number::with(0);
-        $value2 = Number::with(0);
+        $value1 = Number::create(0);
+        $value2 = Number::create(0);
         $value1->divider($value2);
+    }
+
+    public function testFormatSettingClass()
+    {
+        $value1 = Number::create(2000.5);
+        $value2 = Number::create(20500.5);
+        $value3 = Number::create(10.558);
+        $value4 = Number::create(8592759);
+        $value5 = Number::create(4.5848);
+        $value6 = Number::create(31234567894.01);
+        $value7 = Number::create(0.5);
+
+        $format = NumberFormat::create(',', '.', 2, 'R$');
+
+        static::assertEquals('R$ 2.000,50', $value1->format($format));
+        static::assertEquals('R$ 20.500,50', $value2->format($format));
+        static::assertEquals('R$ 10,56', $value3->format($format));
+        static::assertEquals('R$ 8.592.759,00', $value4->format($format));
+        static::assertEquals('R$ 4,58', $value5->format($format));
+        static::assertEquals('R$ 31.234.567.894,01', $value6->format($format));
+        static::assertEquals('R$ 0,50', $value7->format($format));
     }
 }
