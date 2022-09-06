@@ -1,11 +1,11 @@
 Number
- [x] Create with float
+ [x] Multiplication
  [x] Subtraction
  [x] Sum
  [x] Sum zero
  [x] Divider
  [x] Format setting class
- [x] Multiplication
+ [x] Create with float
  [x] Create with string
  [x] Create with int
  [x] Set value
