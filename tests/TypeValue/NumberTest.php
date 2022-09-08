@@ -68,7 +68,7 @@ class NumberTest extends TestCase
         $value1 = Number::create(10.5);
         $value2 = Number::create(2.5);
         $value3 = Number::create('7.5');
-        $value4 = Number::create('0,5');
+        $value4 = Number::create('0.5');
         $result = $value1->sum($value2)->sum($value3)->subtraction($value4);
 
         static::assertInstanceOf(Number::class, $value1);

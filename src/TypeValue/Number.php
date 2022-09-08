@@ -26,7 +26,6 @@ class Number implements NumberInterface
     {
         if (!is_null($value)) {
             $value = trim($value);
-            $value = str_replace(',', '.', $value);
         }
 
         if ($value != 0 && empty($value)) {
