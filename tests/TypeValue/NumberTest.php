@@ -12,14 +12,14 @@ class NumberTest extends TestCase
         static::assertInstanceOf(Number::class, $value);
         static::assertEquals(10, $value->value());
     }
-    
+
     public function testCreateWithInt()
     {
         $value = Number::create(10);
         static::assertInstanceOf(Number::class, $value);
         static::assertEquals(10, $value->value());
     }
-    
+
     public function testCreateWithFloat()
     {
         $value = Number::create(10.0);
@@ -62,7 +62,7 @@ class NumberTest extends TestCase
         static::assertEquals(2, $value2->value());
         static::assertEquals(8, $result->value());
     }
-    
+
     public function testSum()
     {
         $value1 = Number::create(10.5);
@@ -147,7 +147,6 @@ class NumberTest extends TestCase
         static::assertEquals('R$ 20.500,50', $value2->format($format));
         static::assertEquals('R$ 10,56', $value3->format($format));
         static::assertEquals('R$ 8.592.759,00', $value4->format($format));
-
     }
 
     function testCreatingNumberWithFormatValueClass()

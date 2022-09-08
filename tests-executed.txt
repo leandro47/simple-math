@@ -1,14 +1,18 @@
+Format Number
+ [x] Create with integer
+ [x] Create with string and symbol
+
 Number
  [x] Create with float
- [x] Subtraction
+ [x] Multiplication
  [x] Sum
  [x] Sum zero
  [x] Divider
- [x] Fail divider by zero
- [x] Format without settigns
- [x] Format setting class
- [x] Multiplication
  [x] Fail create with text empty
+ [x] Format setting class
+ [x] Format without settigns
+ [x] Subtraction
+ [x] Fail divider by zero
  [x] Create with string
  [x] Create with int
  [x] Set value

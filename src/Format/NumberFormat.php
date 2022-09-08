@@ -59,7 +59,7 @@ class NumberFormat implements NumberFormatInterface
     {
         $value = [$this->integerValue, $this->decimalValue];
 
-        $this->value = "{$this->symbol} ";
+        $this->value = $this->symbol ? "{$this->symbol} " : '';
         $this->value .= implode($this->decimalSeparator, $value);
     }
 
