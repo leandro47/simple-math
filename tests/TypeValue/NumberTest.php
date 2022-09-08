@@ -126,7 +126,7 @@ class NumberTest extends TestCase
 
     public function testFailDividerByZero()
     {
-        static::expectException(InvalidArgumentException::class);
+        static::expectException(DivisionByZeroError::class);
         static::expectExceptionMessage("Value not to be zero");
 
         $value1 = Number::create(0);
@@ -140,9 +140,6 @@ class NumberTest extends TestCase
         $value2 = Number::create(20500.5);
         $value3 = Number::create(10.558);
         $value4 = Number::create(8592759);
-        $value5 = Number::create(4.5848);
-        $value6 = Number::create(31234567894.01);
-        $value7 = Number::create(0.5);
 
         $format = NumberFormat::create(',', '.', 2, 'R$');
 
@@ -150,8 +147,29 @@ class NumberTest extends TestCase
         static::assertEquals('R$ 20.500,50', $value2->format($format));
         static::assertEquals('R$ 10,56', $value3->format($format));
         static::assertEquals('R$ 8.592.759,00', $value4->format($format));
-        static::assertEquals('R$ 4,58', $value5->format($format));
-        static::assertEquals('R$ 31.234.567.894,01', $value6->format($format));
-        static::assertEquals('R$ 0,50', $value7->format($format));
+
+    }
+
+    function testCreatingNumberWithFormatValueClass()
+    {
+        $format = NumberFormat::create(',', '.', 2, 'R$');
+
+        $value1 = Number::create(0.5, $format);
+        $value2 = Number::create(4.5848, $format);
+        $value3 = Number::create(31234567894.01, $format);
+
+        static::assertEquals('R$ 0,50', $value1->format());
+        static::assertEquals('R$ 4,58', $value2->format());
+        static::assertEquals('R$ 31.234.567.894,01', $value3->format());
+    }
+
+    public function testFormatWithoutSettigns()
+    {
+        $value1 = Number::create(2000.5);
+
+        static::expectException(InvalidArgumentException::class);
+        static::expectExceptionMessage('NumberFormatInterface is not defined');
+
+        $value1->format();
     }
 }

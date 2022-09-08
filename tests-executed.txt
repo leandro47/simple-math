@@ -1,16 +1,18 @@
 Number
- [x] Create with int
- [x] Set value
- [x] Multiplication
+ [x] Create with float
  [x] Subtraction
  [x] Sum
  [x] Sum zero
  [x] Divider
- [x] Create with float
+ [x] Fail divider by zero
+ [x] Format without settigns
+ [x] Format setting class
+ [x] Multiplication
+ [x] Fail create with text empty
  [x] Create with string
+ [x] Create with int
+ [x] Set value
  [x] Fail create with null
  [x] Fail create with word
- [x] Fail divider by zero
- [x] Fail create with text empty
- [x] Format setting class
+ [x] Creating number with format value class
 
