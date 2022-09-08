@@ -76,7 +76,7 @@ class Number implements NumberInterface
     public function divider(NumberInterface $value): NumberInterface
     {
         if ($this->value() == 0 || $value->value() == 0) {
-            throw new \InvalidArgumentException("Value not to be zero");
+            throw new \DivisionByZeroError("Value not to be zero");
         }
 
         return new self($this->value() / $value->value());
