@@ -1,5 +1,5 @@
 
-# simple-math
+# simple-math ![Tests Passing](https://github.com/leandro47/simple-math/actions/workflows/php.yml/badge.svg)
 
 Makes simple math calculations and format the results.
 
