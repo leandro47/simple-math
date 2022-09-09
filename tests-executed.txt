@@ -3,16 +3,16 @@ Format Number
  [x] Create with string and symbol
 
 Number
- [x] Create with float
+ [x] Multiplication
  [x] Subtraction
  [x] Sum
  [x] Sum zero
  [x] Divider
- [x] Fail divider by zero
+ [x] Fail create with text empty
  [x] Format setting class
  [x] Format without settigns
- [x] Multiplication
- [x] Fail create with text empty
+ [x] Create with float
+ [x] Fail divider by zero
  [x] Create with string
  [x] Create with int
  [x] Set value
