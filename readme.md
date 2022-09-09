@@ -172,6 +172,6 @@ echo $value1->multiplication($value2)->format($format); // "R$ 10.505,25"
 
 ## Licence
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/leandro47/simple-math/blob/master/licence.md)
 
 
