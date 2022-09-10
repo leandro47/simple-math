@@ -24,11 +24,11 @@ composer require leandro47/simple-math
 * multiplication `*`
 
 ## Functions
-* [Sum values](https://github.com/leandro47/simple-math/edit/master/readme.md#sum-values)
-* [Subtraction values](https://github.com/leandro47/simple-math/edit/master/readme.md#subtraction-values)
-* [Divider values](https://github.com/leandro47/simple-math/edit/master/readme.md#divider-values)
-* [Multiplication values](https://github.com/leandro47/simple-math/edit/master/readme.md#multiplication-values)
-* [Format values](https://github.com/leandro47/simple-math/edit/master/readme.md#format-values)
+* [Sum values](https://github.com/leandro47/simple-math/#sum-values)
+* [Subtraction values](https://github.com/leandro47/simple-math/#subtraction-values)
+* [Divider values](https://github.com/leandro47/simple-math/#divider-values)
+* [Multiplication values](https://github.com/leandro47/simple-math/#multiplication-values)
+* [Format values](https://github.com/leandro47/simple-math/#format-values)
 
 ## Use/Examples
 
